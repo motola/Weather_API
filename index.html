@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style1.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <!-- Header Section -->
+    <header>
+        <h1 class="text-center"> Weather Dashboard </h1>
+    </header>
+
+    <!-- Search Section -->
+    <section class="mce">
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="Enter city or ZIP code">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary btn-block">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Weather Section and Road Risk section -->
+    <section class="my-4">
+        <h3 class="mb-1"> Today's Overview </h3>
+        <div class="row">
+            <div class="col-md-3 text-center space">
+            <div class="border-line">
+                <p> Leeds</p>
+                <p>12:35AM</p>
+                <p> 12 September <br/> Wednesday </p>
+                
+            </div>
+            <div class="space2">
+                <p> <img src="./img/sun.svg" alt="sunny weather" width="20%" height="20%"> Partly Cloudy </p>
+                <h1> 30 <sup>&#x2103;</sup></h1>
+                <!-- <p> Few Clouds </p> -->
+            </div>
+            </div> 
+             <!-- Road risk tab  -->
+            <div class="col-md-9">
+            <div class="text-center r2">
+                <p>Road Stats </p>
+    
+            </div>
+                <div class="row row-under">
+                    <div class="col-md-2 text-center">
+                       <h3>Wind Speed</h3> 
+                       <img src="./img/rain.svg" alt="sunny weather" width="20%" height="20%">
+                       <p> 8 Km/h</p>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h3>Humidity</h3> 
+                        <img src="./img/storm.svg" alt="sunny weather" width="20%" height="20%">
+                       <p> 84%</p>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h3>Visibility</h3> 
+                        <img src="./img/sunshine.svg" alt="sunny weather" width="20%" height="20%">
+                       <p> 25 Km </p>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h3>Pressure</h3>
+                        <img src="./img/sun.svg" alt="sunny weather" width="20%" height="20%"> 
+                        <p> 2015 hPa</p></div>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+
+    <!-- Detailed Weather Stats Section
+    <section class="my-4">
+        <div class="row">
+            <div class="col-md-3 text-center">Wind Speed & Direction</div>
+            <div class="col-md-3 text-center">Humidity</div>
+            <div class="col-md-3 text-center">Pressure</div>
+            <div class="col-md-3 text-center">Visibility</div>
+        </div>
+    </section> -->
+
+    <!-- Forecast Section -->
+    <section class="my-4">
+        <h3 class="mb-1">5-Day Forecast</h3>
+        <div class="row col-md-12 bg-1">
+            <!-- You can duplicate the following block for each day's forecast -->
+            <div class="col-md-3 text-center">
+                <p>Date</p>
+                <img src="daily-weather-icon-url" alt="daily-weather-icon" width="40px">
+                <p>High/Low Temperature</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="mt-5">
+        <div class="text-center">
+            <p>About & Contact | Follow us on Social Media</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
