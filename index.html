@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
+
     <link href="style1.css" rel="stylesheet">
 </head>
 <body>
@@ -19,11 +22,15 @@
     <section class="mce">
         <div class="row">
             <div class="col-md-10">
+                <input type="text" id="cityInput" placeholder="Enter city or ZIP codes" class="form-control">
+                <button class="btn-primary"><i class="fas fa-search"></i></button>
+            </div>
+            <!-- <div class="col-md-10">
                 <input type="text" class="form-control" placeholder="Enter city or ZIP code">
             </div>
             <div class="col-md-2">
                 <button class="btn btn-primary btn-block">Search</button>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -33,43 +40,71 @@
         <div class="row">
             <div class="col-md-3 text-center space">
             <div class="border-line">
-                <p> Leeds</p>
-                <p>12:35AM</p>
-                <p> 12 September <br/> Wednesday </p>
+                <p id="location"> Leeds</p>
+                <p id="current-time"></p>
+                <p id = "current-date"> 12 September <br/> Wednesday </p>
                 
             </div>
             <div class="space2">
-                <p> <img src="./img/sun.svg" alt="sunny weather" width="20%" height="20%"> Partly Cloudy </p>
-                <h1> 30 <sup>&#x2103;</sup></h1>
-                <!-- <p> Few Clouds </p> -->
+                <div class="space3">
+                    <i id="weatherIcon" class="wi"></i> 
+                    <p id="weather-description"> <img src="./img/rain.svg">  Partly Cloudy </p>
+                </div>
+                   <div><h1 id="weather-degree"> 30 <sup> &#x2103;</sup> </h1> </div>
+                   <!-- <p> Few Clouds </p> -->
+               
             </div>
+    
+                
+            
+            
             </div> 
              <!-- Road risk tab  -->
             <div class="col-md-9">
-            <div class="text-center r2">
+            <div class="stats r2">
                 <p>Road Stats </p>
+                <div class="stat-info">
+                    <div class="stat-child">
+                        <h5>Safety Rules for Cars </h5>
+                        <img src="./img/car4.svg" alt="person" width="10%" height="10%">
+                    </div>
+                    <div class="stat-child im">
+                        <h5> Individuals </h5>
+                        <img src="./img/people-25-svgrepo-com.svg" alt="person" width="10%" height="10%">
+                    </div>
+                    <div class="stat-child" >
+                        <h5> Motor Bikes</h5>
+                        <img src="./img/bicycle.svg" alt="person" width="10%" height="10%">
+                    </div>
+                    <div class="stat-child" >
+                        <h5> Buses & Trailers </h5>
+                        <img src="./img/transport.svg" alt="person" width="10%" height="10%">
+                    </div>
+                    
+                </div>
     
             </div>
+            
                 <div class="row row-under">
                     <div class="col-md-2 text-center">
                        <h3>Wind Speed</h3> 
                        <img src="./img/rain.svg" alt="sunny weather" width="20%" height="20%">
-                       <p> 8 Km/h</p>
+                       <p id="wind-speed"> 8 Km/h</p>
                     </div>
                     <div class="col-md-2 text-center">
                         <h3>Humidity</h3> 
                         <img src="./img/storm.svg" alt="sunny weather" width="20%" height="20%">
-                       <p> 84%</p>
+                       <p id="humidity"> 84%</p>
                     </div>
                     <div class="col-md-2 text-center">
                         <h3>Visibility</h3> 
                         <img src="./img/sunshine.svg" alt="sunny weather" width="20%" height="20%">
-                       <p> 25 Km </p>
+                       <p id="visibility"> 25 Km </p>
                     </div>
                     <div class="col-md-2 text-center">
                         <h3>Pressure</h3>
                         <img src="./img/sun.svg" alt="sunny weather" width="20%" height="20%"> 
-                        <p> 2015 hPa</p></div>
+                        <p id="pressure"> 2015 hPa</p></div>
                 </div>
             </div>
            
@@ -107,8 +142,13 @@
     </footer>
 </div>
 
+
+
 <!-- Bootstrap JS and jQuery -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="module" src="./time.js"></script>
+<script type="module" src="./app.js"></script>
 </body>
 </html>

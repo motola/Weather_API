@@ -13,14 +13,20 @@
 
   .form-control {
       padding: 3.2%;
+      padding-left: 240px;
       color: white;
       border: none;
       border-radius: 12px;
       background-color: #121212;
+      padding: 10px 40px 10px 10px;  /* Add padding to the right for the button */
   }
 
   .form-control::placeholder {
       color: #888;
+  }
+
+  input[type="text"] {
+     padding-left:35px;
   }
 
   .form-control:focus {
@@ -30,12 +36,22 @@
   }
 
   button.btn-primary {
-      display: none;
-      border: none;
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
   }
 
   button.btn-primary:hover {
       background-color:#444;
+  }
+  button.btn-primary:focus {
+    outline: none;
   }
 
   /* Current weather & stats */
@@ -88,6 +104,16 @@
       
   }
 
+  .col-md-10 {
+    position: relative;
+    /* width: 200px; */
+  }
+
+  /* .wi {
+    width: 70px;
+    color: white;
+} */
+
 
  
 
@@ -121,12 +147,41 @@
          }
          /* Road risk signage */
         
-         .col-md-9 .text-center {
-          margin: 0;
+         .col-md-9 .stats {
+          margin: 0;    
+          display: block;    
           padding: 50px 0px;
           height: 25vh;
           border-radius: 8px;
           background-color: #121212;
+      }
+
+      .stats .stat-info {
+        margin-top: 25px;
+        display: block;
+        float: left;
+      }
+
+      .stat-child {
+        float: left;
+        width:25%;
+        text-align: center;
+      }
+
+      .stat-child img {
+        display: inline-block;
+        width: 30%;
+      }
+
+      .im img {
+        width:65%;
+        height:80px;
+        margin-top:-17%;
+      }
+
+      .stat-child h5 {
+        font-size: 14px;
+        color:white;
       }
 
       .col-md-9 .row-under {
@@ -138,6 +193,7 @@
       /* City Name Design */
       .col-md-3 {
           /* margin: 20px; */
+         
           display:inline-block;
           padding: 5px;
           border-radius: 8px;
@@ -145,6 +201,7 @@
       }
   
       .col-md-3.space {
+        border: 1px solid #ffffff;  
       height: 60vh;
       padding:10px 20px;
       margin: 0;
@@ -191,6 +248,7 @@
   
       .space2 {
           padding-top: 10%;
+          display: inline-block;
       }
   
       .space2 h1  {
@@ -201,20 +259,42 @@
          color:white;
       }
 
-      .space2 p {
+      .space3 p {
           margin-bottom: -8%;
+          float: right;
+          font-size: 14px;
+          padding-top: 15px;
+          margin-left: 20px;
           
       }
+      .space3 {
+        display: inline-block;
+        margin-left: -45px;
+      }
 
-      .space2 img {
-          width: 50px;
-          height: 50px;
-          stroke-width: 1;
-          padding-right: 12px;
+      .space3 img   {
+          width: 70px;
+          display: inline-block;
+          height: auto;
+          /* background-color: blue; */
+          margin-left: -25px;
+          margin-right: 5px;
+      }
+      .wi {
+        font-size: 70px;
+        margin-top: -10px;
+        height: auto;
+        color:white
+          /* background-color: blue; */
+      }
+
+       
+      .hidden {
+        display: none;
       }
   
      /* Superscript Design */
-      sup {
+      sup, .degree-symbol {
           font-size: 30%;  /* Adjust the size as needed */
           vertical-align:super; /* Adjust alignment if needed */
           position: relative;
@@ -240,8 +320,9 @@
           margin-left: 20px;
           max-width: 12%;
           font-size: 14px;
-         background-color: white;
-         color:black;
+         background-color:#22C67F;
+         font-weight: bold;
+         color:#ffffff;
          border-radius: 12px
       }
       .col-md-2 h3 {
