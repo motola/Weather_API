@@ -1,9 +1,4 @@
-           
-    
-            // Here's a basic mapping based on OpenWeatherMap's codes
-            // For a more detailed mapping, refer to the Weather Icons' documentation
-
-    export function weatherCode (weatherCode) {
+export function weatherCode (weatherCode) {
              
             let iconClass;
   

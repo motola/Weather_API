@@ -7,16 +7,22 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
-
+  
     <link href="style1.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&family=Nunito:wght@400;600&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="container mt-5">
     <!-- Header Section -->
     <header>
-        <h1 class="text-center"> Weather Dashboard </h1>
+        <h1 class="text-center"> <img src="./img/Ward.com3.png"> </h1>
+        <p class="text-center under"> A weather web application with road safety guidelines </p>
     </header>
+    </header>
+
 
     <!-- Search Section -->
     <section class="mce">
@@ -63,21 +69,21 @@
             <div class="col-md-9">
             <div class="stats r2">
                 <p>Road Stats </p>
-                <div class="stat-info">
+                <div class="stat-info hover-container">
                     <div class="stat-child">
-                        <h5>Safety Rules for Cars </h5>
+                        <h5>Cars</h5>
                         <img src="./img/car4.svg" alt="person" width="10%" height="10%">
                     </div>
                     <div class="stat-child im">
-                        <h5> Individuals </h5>
-                        <img src="./img/people-25-svgrepo-com.svg" alt="person" width="10%" height="10%">
+                        <h5>Individuals</h5>
+                        <img src="./img/people-25-svgrepo-com.svg" class="none" alt="person" width="10%" height="10%">
                     </div>
-                    <div class="stat-child" >
-                        <h5> Motor Bikes</h5>
+                    <div class="stat-child">
+                        <h5>Motor Bikes</h5>
                         <img src="./img/bicycle.svg" alt="person" width="10%" height="10%">
                     </div>
                     <div class="stat-child" >
-                        <h5> Buses & Trailers </h5>
+                        <h5>Buses & Trailers</h5>
                         <img src="./img/transport.svg" alt="person" width="10%" height="10%">
                     </div>
                     
@@ -88,7 +94,7 @@
                 <div class="row row-under">
                     <div class="col-md-2 text-center">
                        <h3>Wind Speed</h3> 
-                       <img src="./img/rain.svg" alt="sunny weather" width="20%" height="20%">
+                       <img src="./img/wind.svg" alt="sunny weather" width="20%" height="20%">
                        <p id="wind-speed"> 8 Km/h</p>
                     </div>
                     <div class="col-md-2 text-center">
@@ -122,14 +128,34 @@
     </section> -->
 
     <!-- Forecast Section -->
-    <section class="my-4">
+    <section class="my-5">
         <h3 class="mb-1">5-Day Forecast</h3>
+    <div class="sub-section">
+        <div class="col-md-1"> All days</div>
+        <div class="col-md-1 head-date"> 26 Oct Mon </div>
+        <div class="col-md-1 head-date"> 27 Oct Mon </div>
+        <div class="col-md-1 head-date"> 28 Oct Mon </div>
+        <div class="col-md-1 head-date"> 29 Oct Mon </div>
+        <div class="col-md-1 head-date"> 30 Oct Mon </div>
+    </div>
         <div class="row col-md-12 bg-1">
-            <!-- You can duplicate the following block for each day's forecast -->
-            <div class="col-md-3 text-center">
-                <p>Date</p>
-                <img src="daily-weather-icon-url" alt="daily-weather-icon" width="40px">
-                <p>High/Low Temperature</p>
+            
+            <!-- each day's forecast -->
+            <!-- <div class="col-md-3 week">
+            <div class="timecast">
+                <p id = "current-date"> 26 0ct Mon </p>
+                <p id = "current-time">1:00pm</p>
+            </div>
+            <div class="forecast">
+                    <i id="weatherIcon" class="wi"></i>
+            
+                    <p id="weather-degree"> 30 °C </p> 
+                    <p id="weather-description"> Cloudy </p>
+            </div>
+            </div> -->
+            
+               
+                    
             </div>
         </div>
     </section>
@@ -139,6 +165,8 @@
         <div class="text-center">
             <p>About & Contact | Follow us on Social Media</p>
         </div>
+
+        
     </footer>
 </div>
 
@@ -150,5 +178,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script type="module" src="./time.js"></script>
 <script type="module" src="./app.js"></script>
+<script type="module" src="./forecast.js"></script>
 </body>
 </html>
