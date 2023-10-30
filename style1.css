@@ -3,24 +3,47 @@
     
     body {
       background-color: black;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
    }
 
    p, h2 {
       color: white;
    }
- 
-  /* Search section */
+
+   /* Header Image Style */
+
+   header img {
+    max-width:10%;
+    margin-top:-150px;
+    margin-bottom: -80px;
+  }
+
+ /* Text under Ward.com */
+   header .under {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top:-60px;
+    font-family: 'Nunito', sans-serif;
+   }
+  /* Search input design */
 
   .form-control {
       padding: 3.2%;
+      padding-left: 240px;
       color: white;
       border: none;
       border-radius: 12px;
       background-color: #121212;
+      padding: 10px 40px 10px 10px;  /* Add padding to the right for the button */
   }
 
   .form-control::placeholder {
       color: #888;
+  }
+
+  input[type="text"] {
+     padding-left:40px;
   }
 
   .form-control:focus {
@@ -30,19 +53,33 @@
   }
 
   button.btn-primary {
-      display: none;
-      border: none;
+    position: absolute;
+    top: 55%;
+    left: 4%;
+    padding:0;
+    width:0;
+    margin:0;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
   }
 
-  button.btn-primary:hover {
-      background-color:#444;
+  button.btn-primary:hover, .fas .fa-search:hover {
+      outline: none;
+      color: #555;  
+  }
+  button.btn-primary:focus {
+    outline: none !important;
   }
 
   /* Current weather & stats */
   
   section.my-4 {
       padding: 20px 3% 20px 5%;
-      margin:auto;
+      margin:0;
       width: 100%;
       display: block;
       border-radius: 8px;
@@ -66,6 +103,7 @@
       
   }
 
+  
 
   /* Forecast Section */ 
   .col-md-9.text-center {
@@ -87,6 +125,16 @@
   display: block;
       
   }
+
+  .col-md-10 {
+    position: relative;
+    /* width: 200px; */
+  }
+
+  /* .wi {
+    width: 70px;
+    color: white;
+} */
 
 
  
@@ -121,12 +169,89 @@
          }
          /* Road risk signage */
         
-         .col-md-9 .text-center {
-          margin: 0;
+         .col-md-9 .stats {
+          margin: 0;    
+          display: block;    
           padding: 50px 0px;
           height: 25vh;
+          border-top:1px solid #22C67F;
           border-radius: 8px;
           background-color: #121212;
+      }
+
+      .stats .stat-info {
+        margin-top: 25px;
+        display: block;
+        float: left;
+      }
+
+      .stat-child {
+        float: left;
+        width:25%;
+        text-align: center;
+        z-index: 1;
+      }
+
+      .stat-child img {
+        display: inline-block;
+        width: 30%;
+      }
+
+      .im img {
+        width:65%;
+        height:80px;
+        margin-top:-17%;
+      }
+
+      .custom {
+        width:96.5%;
+        text-align: left;
+        padding-left: 10px;
+        background-color: #121212;
+        z-index: 2;
+        margin-top: -75px;
+        position: absolute;
+        color:white;  
+        height: 25vh;
+        border-radius: 8px;
+      }
+      .custom img {
+        opacity:0;
+      }
+
+      .custom h1 {
+        background-color: #22C67F;
+        color:#ffffff;
+        font-size: 26px;
+        margin-left:-10px;
+        margin-bottom: -10px;
+        border-top:1px solid #22C67F;
+        border-radius: 8px;
+        padding:5px;
+        margin-top:-1px;
+      }
+
+      .custom h1 p {
+        max-width: 50%;
+        vertical-align:middle;
+        margin-bottom: 20px;
+        margin-left: 2px;
+        display: inline;
+        background-color:white;
+        font-size: 10px;
+         font-weight: bold;
+         color:#121212;
+         border-radius: 12px
+      }
+      .custom ul li {
+        font-size: 15px;
+        font-weight: 400;
+      }
+    
+
+      .stat-child h5 {
+        font-size: 16px;
+        color:white;
       }
 
       .col-md-9 .row-under {
@@ -138,6 +263,7 @@
       /* City Name Design */
       .col-md-3 {
           /* margin: 20px; */
+         
           display:inline-block;
           padding: 5px;
           border-radius: 8px;
@@ -145,6 +271,7 @@
       }
   
       .col-md-3.space {
+        border: 1px solid #ffffff;  
       height: 60vh;
       padding:10px 20px;
       margin: 0;
@@ -191,6 +318,7 @@
   
       .space2 {
           padding-top: 10%;
+          display: inline-block;
       }
   
       .space2 h1  {
@@ -201,20 +329,49 @@
          color:white;
       }
 
-      .space2 p {
+      .space3 p {
           margin-bottom: -8%;
+          display: inline;
+          max-width: 100%;
+          float: right;
+          font-size: 14px;
+          padding-top: 15px;
+          margin-left: 20px;
           
       }
+      .space3 {
+        display: inline-block;
+        margin-left: -45px;
+      }
 
-      .space2 img {
-          width: 50px;
-          height: 50px;
-          stroke-width: 1;
-          padding-right: 12px;
+      .space3 img   {
+          width: 70px;
+          display: inline-block;
+          height: auto;
+          /* background-color: blue; */
+          margin-left: -25px;
+          margin-right: 5px;
+      }
+      /* in case of any overlapping image remove margin-left and max-width */
+      .wi {
+        font-size: 70px;
+        margin-top: -10px;
+        height: auto;
+        color:white;
+        margin-left:-40px;
+        margin-right: 20px;
+        max-width:10%;
+          /* background-color: blue; */
+      }
+
+
+       
+      .hidden {
+        display: none;
       }
   
      /* Superscript Design */
-      sup {
+      sup, .degree-symbol {
           font-size: 30%;  /* Adjust the size as needed */
           vertical-align:super; /* Adjust alignment if needed */
           position: relative;
@@ -225,13 +382,32 @@
       .col-md-9 .row .col-md-2 {
           display:inline-block;
           margin:auto;
-          height: 31vh;
+          height: 32.2vh;
           color:white;
           min-width: 23.5%;
           padding: 5px 15px;
           border-radius: 8px;
           background-color:#121212; 
       }
+
+     
+
+      /* .hover-container {
+        position: relative;
+        width: 200px;
+        height: 100px;
+        border: 1px solid black;
+    } */
+    
+    .hover-details {
+        display: none;
+        position: absolute;
+        top: 100%;  /* Position it below the main content */
+        left: 0;
+        width: 200px;
+        background-color: white;
+        border: 1px solid black;
+    }
 
       .r2 p {
           text-align: center;
@@ -240,41 +416,151 @@
           margin-left: 20px;
           max-width: 12%;
           font-size: 14px;
-         background-color: white;
-         color:black;
+         background-color:#22C67F;
+         font-weight: bold;
+         color:#ffffff;
          border-radius: 12px
       }
       .col-md-2 h3 {
-          font-size: 24px;
+          font-size: 20px;
+          font-family: 'Montserrat', sans-serif;
+          padding-top: 5px;
+      }
+
+      sup {
+        font-family: 'Nunito', sans-serif;   
       }
 
       .col-md-2 p {
-          font-size: 28px;
-          padding-top: 35px;
+          font-size: 26px;
+          padding-top: 50px;
+          font-family: 'Montserrat', sans-serif;
           vertical-align: text-bottom;
       }
-
+      .row-under .col-md-2 {
+        border-bottom: 2px solid #22C67F;
+        border-radius: 1px 1px;
+      }
       .col-md-2 img {
-          padding-top:20px;
-          width:50px;
-          height: 50px;
-      }
-      section.my-4 h3.mb-1 {
-          text-align: left;
-          margin-top: -2.5%;
-          padding-bottom: 15px;
-          color: white;
-      }
-      section.my-4 .bg-1 {
-          background-color: #121212;
           margin-top:30px;
-          max-width:100%;
+          width:100%;
+          height: 60px;
+      }
+
+      section.my-5 {
+      margin:-5% 1% 1% 3%;
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+      }
+      section.my-5 h3.mb-1, section.my-4 h3.mb-1 {
+      text-align: left;
+      margin-top: -2%;
+      padding-bottom: 15px;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      }
+
+      section.my-5 h3.mb-1 {
+        margin-left:25px;
+      }
+      section.my-5 .bg-1 {
+          margin-top:30px;
+          margin:0;
+          padding: 0;
+          max-width: 100%;
           border-radius: 8px;
       
       }
-      
 
-      /* Road Risk tab; */
+    
+
+      section.my-5 .col-md-3.week {
+        max-width: 24%;
+        padding:1% 1% 0 1%;
+        margin:auto;
+        margin-top:15px;
+        /* display: inline-block;
+        margin-right: 1%; */
+      }
+      i {
+        max-width: 10%;
+      }
+
+      .week .forecast .wi {
+        font-size: 22px;
+        height: auto;
+        vertical-align: middle;
+        padding-top:0px;
+        margin-left: -70px;
+        color:#6AE7B6;
+        margin-bottom: -20px;
+      }
+
+      .col-md-1 {
+        /* margin: 20px; */
+        max-width:10%;
+        text-align: center; 
+        margin-bottom: 2.5%;
+        margin-left: 0.5%;
+        font-weight: 600;
+        font-family: 'Nunito', sans-serif;
+        font-size: 15px;
+        color:white;
+        display:inline-block;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: #121212; 
+    
+      }
+
+     section.my-5 .col-md-1:nth-child(1) {
+        background-color:#22C67F;
+        color:white;
+      }
+      /* 5-Day Forecast; */
+
+      section.my-5 .col-md-3 {
+        padding: 0;
+        margin: 0;
+      }
+
+      .timecast {
+       width: 40%;
+        margin:0;
+        padding: 0;
+        display: inline-block;
+      }
+    .timecast p {
+      width: 100%;
+      display: block;
+      margin: 1px 0 0 0;
+      font-size:12px;
+    }
+    .forecast {
+      width: 58%;
+      margin:0;
+      padding: 0;
+      display: inline-block;
+      vertical-align: top;
+      
+    }
+
+    .forecast p {
+      width: 100%;
+      text-align: right;
+      display: inline-block;
+      margin:1px 0 0 0;
+      font-size:12px;
+
+    }
+
+    .forecast .wi {
+       width:10
+    }
+    
       
       
   }
