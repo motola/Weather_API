@@ -1,6 +1,7 @@
 # Weather_API
 Create a responsive web weather application
-
+![Alt text](<img/de (1).png>)
+![Alt text](<img/de (2).png>)
 ## Installation
 Clone the repository and install dependencies using npm:
 
