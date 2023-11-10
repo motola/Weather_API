@@ -90,20 +90,24 @@ function fetchWeatherData() {
       let allContainer = Array.from(parentContainer);
 
       // Iterate over elements in the array, add a new class that creates on hover and then add the AI Safety rules for each car
-      allContainer.forEach((element) => {
+      allContainer.forEach(element => {
         element.dataset.originalContent = element.innerHTML;
         element.addEventListener("mouseover", function () {
+          console.log("On mouseover");
           element.classList.add("custom");
           let header = element.querySelector("h5");
+          console.log('h5 is ', header);
 
           // create variable to pass analytics result from AI safety utilty functions
           let aiResult;
 
           // Alogrithm to populate safety rules after each hover on header items
           if (header.textContent === "Cars") {
+            console.log('cars text content is', header.textContent);
             aiResult = carAI(windSpeed, humidityData, numbers, pressureData);
             console.log(aiResult);
           } else if (header.textContent === "Individuals") {
+            console.log('cars text content is', header.textContent);
             aiResult = personAI(windSpeed, humidityData, pressureData, numbers);
             console.log(aiResult);
           } else if (header.textContent === "Motor Bikes") {
@@ -137,7 +141,7 @@ function fetchWeatherData() {
         });
 
         element.addEventListener("mouseout", function () {
-          console.log("thrilling");
+          console.log("On mouse Out");
           element.classList.remove("custom");
           element.innerHTML = element.dataset.originalContent;
         });
@@ -167,7 +171,10 @@ function fetchFiveDayForecast() {
 
       let currentDate = new Date();
       let dayArray = [];
-      
+
+
+          
+
      // iteration to get all item from the main data 
       data.list.forEach((item, index) => {
         
@@ -183,92 +190,90 @@ function fetchFiveDayForecast() {
         const newDate = `${formatDate}, ${dayOfWeek}`;
 
 
-       
+         // Fetch date and time format from the api data
+         let timeStamp = new Date(item.dt * 1000);
+         const dateString = new Date(timeStamp);
+         const timeFormat = new Intl.DateTimeFormat("en-US", {
+           hour: "2-digit",
+           minute: "2-digit",
+         });
+         const timeString = timeFormat.format(dateString);
+         let dataResult = item.weather[0].id;
+         console.log(dataResult);
+         let weatherResult = weatherCode(dataResult);
+         console.log(weatherResult);
+         const temp = Math.round(item.main.temp);
+         const description = item.weather[0].main;
+         // currentDate.innerHTML = date
+ 
+         let section = document.querySelector(".my-5");
+         let column = section.querySelector(".col-md-12");
+         let daySection = document.querySelector(".sub-section");
+         let otherDays = daySection.querySelectorAll(`.head-date`);
+ 
+         // Creating dom element and classes for the five-day weather forecast 
+         const firstDiv = document.createElement("div");
+         firstDiv.classList.add("col-md-3", "week");
+         const timecastItem = document.createElement("div");
+         const forecastItem = document.createElement("div");
+         timecastItem.classList.add("timecast");
+         forecastItem.classList.add("forecast");
+    
         
+        // Getting the date data from the api and passing it to each header of the five days forecast 
         if (date.toDateString() !== currentDate.toDateString())  {
           // Update the current date
-          console.log( 'Resultant', date.toDateString(), "and", currentDate.toDateString())
-          
           dayArray.push(currentDate);
           console.log(dayArray);
          
           currentDate = date;  
           const timestamps = dayArray
+          // Trying to loop through the date data in the array and sort date to each day, month and weekday
           const dates = timestamps.map(timestamp => {
           const sortDate = new Date(timestamp);
           let DayDate = sortDate.toLocaleDateString("en-US", {
-            day: "numeric",
-            
+            day: "numeric", 
           });
           let monthDate = sortDate.toLocaleDateString("en-US", {
             month: "short"
           });
-
           let weekDate = sortDate.toLocaleDateString("en-US", {
             weekday: "short",
           });
-
           let actualDate = `${DayDate} ${monthDate} ${weekDate}`
           return actualDate;
           });
-      
-         console.log(dates);
-
-         let daySection = document.querySelector(".sub-section");
-         let otherDays = daySection.querySelectorAll(`.head-date`);
-
+          console.log(dates);
+          //
+          
+         
+         // Extracting all date headers from the DOM elements anf mapping the sorted date to each elements
+        
+         
          dates.forEach((date, index) => {
          if (index < otherDays.length) {
-          // Convert the date to the desired format
-          const formattedDate = date
-          
-
-          
-      
-          // Update the text content of the corresponding element in otherDays
-          otherDays[index].textContent = formattedDate;
-
-          otherDays[index].addEventListener("click", function () {
-            console.log("I am Clicked");
-          });
+          otherDays[index].textContent = date;
+        
         } else {
           console.log(`No element found at index ${index}`);
         }
+
+        
         });
+
+       
+
+        
       
-      
+        
         } 
-      
+
+       
 
 
  
 
-        // Process and display 5-day forecast data for all days
-        let timeStamp = new Date(item.dt * 1000);
-        const dateString = new Date(timeStamp);
-        const timeFormat = new Intl.DateTimeFormat("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-        const timeString = timeFormat.format(dateString);
-        let dataResult = item.weather[0].id;
-        console.log(dataResult);
-        let weatherResult = weatherCode(dataResult);
-        console.log(weatherResult);
-        const temp = Math.round(item.main.temp);
-        const description = item.weather[0].main;
-        // currentDate.innerHTML = date
-
-        let section = document.querySelector(".my-5");
-        let column = section.querySelector(".col-md-12");
-
-        // Process and display 5-day forecast data 
-        const firstDiv = document.createElement("div");
-        firstDiv.classList.add("col-md-3", "week");
-        const timecastItem = document.createElement("div");
-        const forecastItem = document.createElement("div");
-        timecastItem.classList.add("timecast");
-        forecastItem.classList.add("forecast");
+  
 
         timecastItem.innerHTML = `
                   <p id = "current-date">${newDate}</p>
@@ -276,7 +281,6 @@ function fetchFiveDayForecast() {
      `;
 
         forecastItem.innerHTML = `
-              
               <p id="weather-degree">${temp}  \u00B0C  </p>
               <i id="weatherIcon" class="wi ${weatherResult}">  </i>
               <p id="weather-description"> ${description} </p>
@@ -307,3 +311,5 @@ function fetchFiveDayForecast() {
 }
 
 window.fetchWeatherData = fetchWeatherData;
+
+
