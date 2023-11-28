@@ -252,17 +252,13 @@ function fetchFiveDayForecast() {
          
          dates.forEach((date, index) => {
          if (index < otherDays.length) {
-          // Convert the date to the desired format
-          const formattedDate = date
-          
+          otherDays[index].textContent = date;
+        
+        } else {
+          console.log(`No element found at index ${index}`);
+        }
 
-          
-      
-          // Update the text content of the corresponding element in otherDays
-          otherDays[index].textContent = formattedDate;
-
-         
-        } 
+        
         });
 
        
