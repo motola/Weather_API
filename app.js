@@ -228,21 +228,12 @@ function fetchFiveDayForecast() {
           // Update the text content of the corresponding element in otherDays
           otherDays[index].textContent = formattedDate;
 
-          otherDays[index].addEventListener("click", function () {
-            console.log("I am Clicked");
-          });
-        } else {
-          console.log(`No element found at index ${index}`);
-        }
+         
+        } 
         });
       
       
         } 
-      
-
-
- 
-
         // Process and display 5-day forecast data for all days
         let timeStamp = new Date(item.dt * 1000);
         const dateString = new Date(timeStamp);
