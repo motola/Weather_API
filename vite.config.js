@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import dotenv from 'dotenv';
 
-dotenv.config();
-if (dotenv.config().error) {
+const result = dotenv.config();
+if (result.error) {
   throw result.error;
 }
 // Check if result of the dotenv.config();
