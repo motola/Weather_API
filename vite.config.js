@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-
 // Check if result of the dotenv.config();
 console.log('Loaded environment variables:', dotenv.config().parsed);
 export default defineConfig({

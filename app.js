@@ -5,29 +5,28 @@ import { bikeAI } from "./bike";
 import { vehicleAI } from "./vehicleAI";
 
 let apiKey = import.meta.env.VITE_API_KEY;
-
 let revent = document.getElementById("cityInput");
+let city = "";
 
-// Event listener to generate 
+
+// Event listener from search to kickstart functions
 revent.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
-    
     // Prevent the form from doing a full page submit
     event.preventDefault();
+
+    city = revent.value;
     console.log(fetchWeatherData.API_KEY);
     fetchWeatherData();
     fetchFiveDayForecast();
   }
-
 });
 
-function fetchWeatherData() {
- 
-  const city = document.querySelector("#cityInput").value;
 
-  console.log("city", city);
+  // Function Declaration for the city forecast for the day
+function fetchWeatherData() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-  console.log(url);
+   // using fetch api, get data from the external
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -154,31 +153,24 @@ function fetchWeatherData() {
       console.error("Error fetching the weather data:", error);
     });
 }
-
+// Ends here function for the day...
 
 
 // Function for five days weather forecast.
 
 function fetchFiveDayForecast() {
-  const city = document.querySelector("#cityInput").value;
-  const forecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-
-  console.log(forecastUrl);
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   fetch(forecastUrl)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.list);
 
       let currentDate = new Date();
       let dayArray = [];
-
-
-          
-
-     // iteration to get all item from the main data 
+      console.log("data", data);
+     // 1 Iterating over list of data obtained from openweather API
       data.list.forEach((item, index) => {
-        
-
+       
+        // 2 formating date data from the fetch API for the header
         const date = new Date(item.dt * 1000);
         let formatDate = date.toLocaleDateString("en-US", {
           month: "short",
@@ -190,18 +182,19 @@ function fetchFiveDayForecast() {
         const newDate = `${formatDate}, ${dayOfWeek}`;
 
 
-         // Fetch date and time format from the api data
-         let timeStamp = new Date(item.dt * 1000);
-         const dateString = new Date(timeStamp);
+         // 3 Fetch date and time format from the api data for 3 hours interval for all five days
+         const dateString = new Date(date);
          const timeFormat = new Intl.DateTimeFormat("en-US", {
            hour: "2-digit",
            minute: "2-digit",
          });
          const timeString = timeFormat.format(dateString);
+         
+         // 4 Fetch weatherCode needed for designing the weather icons
          let dataResult = item.weather[0].id;
          console.log(dataResult);
          let weatherResult = weatherCode(dataResult);
-         console.log(weatherResult);
+         console.log("waether Result ", weatherResult);
          const temp = Math.round(item.main.temp);
          const description = item.weather[0].main;
          // currentDate.innerHTML = date
@@ -222,11 +215,12 @@ function fetchFiveDayForecast() {
         
         // Getting the date data from the api and passing it to each header of the five days forecast 
         if (date.toDateString() !== currentDate.toDateString())  {
+          // console.log("date: ", date, "currentDATE: ", currentDate);
           // Update the current date
           dayArray.push(currentDate);
           console.log(dayArray);
          
-          currentDate = date;  
+          currentDate = date;    
           const timestamps = dayArray
           // Trying to loop through the date data in the array and sort date to each day, month and weekday
           const dates = timestamps.map(timestamp => {
@@ -247,25 +241,26 @@ function fetchFiveDayForecast() {
           //
           
          
-         // Extracting all date headers from the DOM elements anf mapping the sorted date to each elements
-        
-         
+         // assigning dates to each date element headers
          dates.forEach((date, index) => {
          if (index < otherDays.length) {
           otherDays[index].textContent = date;
-        
+
+      //     let populateDay = item.findAll(oneday => {
+      //      otherDays[index].addEventListener("click", function () {
+      //        if (oneday === date) {
+      //          return item
+      //        }
+      //       })
+      //  })
         } else {
           console.log(`No element found at index ${index}`);
         }
-
-        
         });
+        //
 
+         
        
-
-        
-      
-        
         } 
 
        
@@ -275,7 +270,7 @@ function fetchFiveDayForecast() {
 
   
 
-        timecastItem.innerHTML = `
+      timecastItem.innerHTML = `
                   <p id = "current-date">${newDate}</p>
                   <p id = "current-time">${timeString}</p>           
      `;
