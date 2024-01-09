@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite';
 import dotenv from 'dotenv';
 
-const result = dotenv.config();
+dotenv.config();
+
 
 // Check if result of the dotenv.config();
 console.log('Loaded environment variables:', dotenv.config().parsed);
