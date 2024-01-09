@@ -2,9 +2,7 @@ import { defineConfig } from 'vite';
 import dotenv from 'dotenv';
 
 const result = dotenv.config();
-if (result.error) {
-  throw result.error;
-}
+
 // Check if result of the dotenv.config();
 console.log('Loaded environment variables:', dotenv.config().parsed);
 export default defineConfig({
