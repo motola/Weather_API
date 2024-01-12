@@ -167,11 +167,67 @@ function fetchFiveDayForecast() {
       let currentDate = new Date();
       let dayArray = [];
       console.log("data", data);
+      
      // 1 Iterating over list of data obtained from openweather API
       data.list.forEach((item, index) => {
+         
+        // 2 Create and fetch all DOM elements needed to create the forecast with a global scope perspective
+         let section = document.querySelector(".my-5");
+         let column = section.querySelector(".col-md-12");
+         let daySection = document.querySelector(".sub-section");
+         let otherDays = daySection.querySelectorAll(`.head-date`);
+         let allDay = document.querySelector(".all-day");
+ 
+         // 3 Creating dom element and classes for the five-day weather forecast 
+         const firstDiv = document.createElement("div");
+         firstDiv.classList.add("col-md-3", "week");
+         const timecastItem = document.createElement("div");
+         const forecastItem = document.createElement("div");
+         timecastItem.classList.add("timecast");
+         forecastItem.classList.add("forecast");
        
-        // 2 formating date data from the fetch API for the header
+        // 4 formating date data from the fetch API for the header
         const date = new Date(item.dt * 1000);
+
+        if (date.toDateString() !== currentDate.toDateString())  {
+          console.log("date: ", date, "currentDATE: ", currentDate);
+          // Update the current date
+          dayArray.push(date);
+          console.log(dayArray);
+         
+          currentDate = date;    
+          const timestamps = dayArray
+          // Trying to loop through the date data in the array and sort date to each day, month and weekday
+          const dates = timestamps.map(timestamp => {
+          const sortDate = new Date(timestamp);
+          let DayDate = sortDate.toLocaleDateString("en-US", {
+            day: "numeric", 
+          });
+          let monthDate = sortDate.toLocaleDateString("en-US", {
+            month: "short"
+          });
+          let weekDate = sortDate.toLocaleDateString("en-US", {
+            weekday: "short",
+          });
+          let actualDate = `${DayDate} ${monthDate} ${weekDate}`
+          return actualDate;
+          });
+          console.log(dates);
+          //
+          
+         
+         // assigning dates to each date element headers
+        dates.forEach((date, index) => {
+         if (index < otherDays.length) {
+        otherDays[index].textContent = date;       
+        } else {
+          console.log(`No element found at index ${index}`);
+        }
+        });  
+      } 
+      //
+
+      
         let formatDate = date.toLocaleDateString("en-US", {
           month: "short",
           day: "numeric",
@@ -198,72 +254,86 @@ function fetchFiveDayForecast() {
          const temp = Math.round(item.main.temp);
          const description = item.weather[0].main;
          // currentDate.innerHTML = date
- 
-         let section = document.querySelector(".my-5");
-         let column = section.querySelector(".col-md-12");
-         let daySection = document.querySelector(".sub-section");
-         let otherDays = daySection.querySelectorAll(`.head-date`);
- 
-         // Creating dom element and classes for the five-day weather forecast 
-         const firstDiv = document.createElement("div");
-         firstDiv.classList.add("col-md-3", "week");
-         const timecastItem = document.createElement("div");
-         const forecastItem = document.createElement("div");
-         timecastItem.classList.add("timecast");
-         forecastItem.classList.add("forecast");
-    
+
+         let forecastData = {
+            newDate,
+            timeString,
+            temp,
+            weatherResult,
+            description
+         }  
+         
+         console.log('forecastData', forecastData);
+         
+             allDay.addEventListener('click', function(event) {
+          firstDiv.style.display = "none"
+          handleButtonClick(event, allDay);
+        });
+
+        function handleButtonClick (event, buttonClick) {
+          if (event.target === buttonClick) {
+            firstDiv.style.display = "block"
+            console.log("forecastData");
+          }
+        
+        }
         
         // Getting the date data from the api and passing it to each header of the five days forecast 
-        if (date.toDateString() !== currentDate.toDateString())  {
-          // console.log("date: ", date, "currentDATE: ", currentDate);
-          // Update the current date
-          dayArray.push(currentDate);
-          console.log(dayArray);
-         
-          currentDate = date;    
-          const timestamps = dayArray
-          // Trying to loop through the date data in the array and sort date to each day, month and weekday
-          const dates = timestamps.map(timestamp => {
-          const sortDate = new Date(timestamp);
-          let DayDate = sortDate.toLocaleDateString("en-US", {
+       
+      //
+         otherDays.forEach(day => {
+          day.addEventListener('click', function() {
+           let headerDate = day.textContent;
+           let dataDate = new Date(date)
+           let selectedArray = []
+
+           
+           firstDiv.style.display = "none"
+
+           let DayDate = dataDate.toLocaleDateString("en-US", {
             day: "numeric", 
           });
-          let monthDate = sortDate.toLocaleDateString("en-US", {
+          let monthDate = dataDate.toLocaleDateString("en-US", {
             month: "short"
           });
-          let weekDate = sortDate.toLocaleDateString("en-US", {
+          let weekDate = dataDate.toLocaleDateString("en-US", {
             weekday: "short",
           });
-          let actualDate = `${DayDate} ${monthDate} ${weekDate}`
-          return actualDate;
-          });
-          console.log(dates);
-          //
+          let formattedDataDate = `${DayDate} ${monthDate} ${weekDate}`
+         
           
-         
-         // assigning dates to each date element headers
-         dates.forEach((date, index) => {
-         if (index < otherDays.length) {
-          otherDays[index].textContent = date;
+          console.log('clicked', day.textContent, 'date: ', formattedDataDate)
+           
+          if (headerDate === formattedDataDate) {
+            
+            timecastItem.innerHTML = `
+            <p id = "current-date">${forecastData.newDate}</p>
+            <p id = "current-time">${forecastData.timeString}</p>           
+              `;
 
-      //     let populateDay = item.findAll(oneday => {
-      //      otherDays[index].addEventListener("click", function () {
-      //        if (oneday === date) {
-      //          return item
-      //        }
-      //       })
-      //  })
-        } else {
-          console.log(`No element found at index ${index}`);
-        }
-        });
-        //
-
-         
-       
-        } 
+            forecastItem.innerHTML = `
+            <p id="weather-degree">${forecastData.temp}  \u00B0C  </p>
+            <i id="weatherIcon" class="wi ${forecastData.weatherResult}">  </i>
+            <p id="weather-description"> ${forecastData.description} </p>
+            `;
+            firstDiv.style.display = "block"
+          }
+          });
+        })
 
        
+        
+        
+
+    
+
+
+        
+
+       
+       
+
+    
 
 
  
@@ -271,14 +341,14 @@ function fetchFiveDayForecast() {
   
 
       timecastItem.innerHTML = `
-                  <p id = "current-date">${newDate}</p>
-                  <p id = "current-time">${timeString}</p>           
+                  <p id = "current-date">${forecastData.newDate}</p>
+                  <p id = "current-time">${forecastData.timeString}</p>           
      `;
 
         forecastItem.innerHTML = `
-              <p id="weather-degree">${temp}  \u00B0C  </p>
-              <i id="weatherIcon" class="wi ${weatherResult}">  </i>
-              <p id="weather-description"> ${description} </p>
+              <p id="weather-degree">${forecastData.temp}  \u00B0C  </p>
+              <i id="weatherIcon" class="wi ${forecastData.weatherResult}">  </i>
+              <p id="weather-description"> ${forecastData.description} </p>
               `;
         firstDiv.appendChild(timecastItem);
         firstDiv.appendChild(forecastItem);
